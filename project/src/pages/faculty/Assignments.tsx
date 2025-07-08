@@ -113,11 +113,11 @@ const Assignments: React.FC = () => {
     const getStatusColor = (status: string) => {
         switch (status) {
             case 'Active':
-                return 'bg-green-100 text-green-800';
+                return 'bg-[#F7C873] text-[#C71585]'; // gold bg, magenta text
             case 'Past Due':
                 return 'bg-red-100 text-red-800';
             case 'Graded':
-                return 'bg-blue-100 text-blue-800';
+                return 'bg-[#8D38A8] text-white'; // purple bg, white text
             default:
                 return 'bg-gray-100 text-gray-800';
         }
@@ -127,7 +127,7 @@ const Assignments: React.FC = () => {
         <div className="container mx-auto px-4 py-8">
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-gray-800">Assignment Management</h1>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center" onClick={() => { setShowForm(true); setFormMode('add'); setFormAssignment({}); }}>
+                <button className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8] flex items-center" onClick={() => { setShowForm(true); setFormMode('add'); setFormAssignment({}); }}>
                     <FaPlus className="mr-2" />
                     Create Assignment
                 </button>
@@ -204,10 +204,10 @@ const Assignments: React.FC = () => {
                                 </td>
                                 <td className="px-2 py-4 whitespace-nowrap text-sm font-medium">
                                     <div className="flex space-x-3">
-                                        <button onClick={() => handleViewAssignment(assignment)} className="text-blue-600 hover:text-blue-900">
+                                        <button onClick={() => handleViewAssignment(assignment)} className="text-[#C71585] hover:text-[#8D38A8]">
                                             <FaEye className="w-5 h-5" />
                                         </button>
-                                        <button onClick={() => handleEditAssignment(assignment)} className="text-green-600 hover:text-green-900">
+                                        <button onClick={() => handleEditAssignment(assignment)} className="text-[#8D38A8] hover:text-[#C71585]">
                                             <FaEdit className="w-5 h-5" />
                                         </button>
                                         <button onClick={() => handleDeleteAssignment(assignment.id)} className="text-red-600 hover:text-red-900">
@@ -271,7 +271,7 @@ const Assignments: React.FC = () => {
                             </div>
                             <div className="flex justify-end space-x-2 mt-4">
                                 <button type="button" onClick={() => setShowForm(false)} className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">{formMode === 'add' ? 'Create' : 'Update'}</button>
+                                <button type="submit" className="px-4 py-2 bg-[#C71585] text-white rounded hover:bg-[#8D38A8]">{formMode === 'add' ? 'Create' : 'Update'}</button>
                             </div>
                         </form>
                     </div>
@@ -299,11 +299,11 @@ const Assignments: React.FC = () => {
                             <p><span className="font-medium">Submissions:</span> {selectedAssignment.submissionCount}</p>
                         </div>
                         <div className="mt-4 flex justify-end space-x-3">
-                            <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center">
+                            <button className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8] flex items-center">
                                 <FaDownload className="mr-2" />
                                 Download Submissions
                             </button>
-                            <button onClick={() => setShowModal(false)} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                            <button onClick={() => setShowModal(false)} className="bg-[#F7C873] text-[#C71585] px-4 py-2 rounded-lg hover:bg-[#8D38A8] hover:text-white">
                                 Close
                             </button>
                         </div>

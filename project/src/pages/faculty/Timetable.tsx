@@ -81,11 +81,11 @@ const Timetable: React.FC = () => {
     const getTypeColor = (type: string) => {
         switch (type) {
             case 'Lecture':
-                return 'bg-blue-100 border-blue-200 text-blue-800';
+                return 'bg-[#E6A2FF] border-[#E6A2FF] text-[#490548]'; // Light purple
             case 'Lab':
-                return 'bg-green-100 border-green-200 text-green-800';
+                return 'bg-[#F7C873] border-[#F7C873] text-[#490548]'; // Gold
             case 'Tutorial':
-                return 'bg-purple-100 border-purple-200 text-purple-800';
+                return 'bg-[#C71585] border-[#C71585] text-white'; // Magenta
             default:
                 return 'bg-gray-100 border-gray-200 text-gray-800';
         }
@@ -150,11 +150,11 @@ const Timetable: React.FC = () => {
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-gray-800">Weekly Timetable</h1>
                 <div className="flex space-x-4">
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center" onClick={handleExportSchedule}>
+                    <button className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8] flex items-center" onClick={handleExportSchedule}>
                         <FaCalendarAlt className="mr-2" />
                         Export Schedule
                     </button>
-                    <button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center" onClick={handleEditSchedule}>
+                    <button className="bg-[#F7C873] text-[#490548] px-4 py-2 rounded-lg hover:bg-[#C71585] flex items-center" onClick={handleEditSchedule}>
                         <FaEdit className="mr-2" />
                         Edit Schedule
                     </button>
@@ -164,15 +164,15 @@ const Timetable: React.FC = () => {
             {/* Schedule Legend */}
             <div className="flex space-x-4 mb-6">
                 <div className="flex items-center">
-                    <div className="w-4 h-4 rounded bg-blue-100 border border-blue-200 mr-2"></div>
+                    <div className="w-4 h-4 rounded bg-[#E6A2FF] border border-[#E6A2FF] mr-2"></div>
                     <span className="text-sm text-gray-600">Lecture</span>
                 </div>
                 <div className="flex items-center">
-                    <div className="w-4 h-4 rounded bg-green-100 border border-green-200 mr-2"></div>
+                    <div className="w-4 h-4 rounded bg-[#F7C873] border border-[#F7C873] mr-2"></div>
                     <span className="text-sm text-gray-600">Lab</span>
                 </div>
                 <div className="flex items-center">
-                    <div className="w-4 h-4 rounded bg-purple-100 border border-purple-200 mr-2"></div>
+                    <div className="w-4 h-4 rounded bg-[#C71585] border border-[#C71585] mr-2"></div>
                     <span className="text-sm text-gray-600">Tutorial</span>
                 </div>
             </div>
@@ -229,7 +229,7 @@ const Timetable: React.FC = () => {
                             </div>
                             <div className="flex justify-end space-x-2 mt-4">
                                 <button type="button" onClick={() => setShowSessionForm(false)} className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">{formType === 'add' ? 'Add' : 'Update'}</button>
+                                <button type="submit" className="px-4 py-2 bg-[#C71585] text-white rounded hover:bg-[#8D38A8]">{formType === 'add' ? 'Add' : 'Update'}</button>
                             </div>
                         </form>
                     </div>
@@ -239,7 +239,7 @@ const Timetable: React.FC = () => {
             {/* Edit mode controls */}
             {editMode && (
                 <div className="my-4 flex space-x-2">
-                    <button className="px-4 py-2 bg-blue-500 text-white rounded" onClick={handleAddSession}>Add Session</button>
+                    <button className="px-4 py-2 bg-[#C71585] text-white rounded" onClick={handleAddSession}>Add Session</button>
                     <button className="px-4 py-2 bg-gray-400 text-white rounded" onClick={() => setEditMode(false)}>Done Editing</button>
                 </div>
             )}
@@ -272,7 +272,7 @@ const Timetable: React.FC = () => {
                                             return (
                                                 <td key={`${day}-${time}`} className="px-2 py-4 whitespace-nowrap">
                                                     {editMode && (
-                                                        <button className="text-xs text-blue-600 underline" onClick={() => { setFormType('add'); setFormSession({ day, startTime: time }); setShowSessionForm(true); }}>+ Add</button>
+                                                        <button className="text-xs text-[#C71585] underline" onClick={() => { setFormType('add'); setFormSession({ day, startTime: time }); setShowSessionForm(true); }}>+ Add</button>
                                                     )}
                                                 </td>
                                             );
@@ -299,7 +299,7 @@ const Timetable: React.FC = () => {
                                                         <div className="text-xs mt-1 font-medium">{session.type}</div>
                                                         {editMode && (
                                                             <div className="flex space-x-2 mt-2">
-                                                                <button className="text-xs text-green-700 underline" onClick={() => handleEditSession(session)}>Edit</button>
+                                                                <button className="text-xs text-[#C71585] underline" onClick={() => handleEditSession(session)}>Edit</button>
                                                                 <button className="text-xs text-red-700 underline" onClick={() => handleDeleteSession(session.id)}>Delete</button>
                                                             </div>
                                                         )}

@@ -119,9 +119,9 @@ const Meetings: React.FC = () => {
     const getStatusColor = (status: string) => {
         switch (status) {
             case 'Scheduled':
-                return 'bg-green-100 text-green-800';
+                return 'bg-[#F7C873] text-[#490548]'; // Gold bg, deep purple text
             case 'Completed':
-                return 'bg-blue-100 text-blue-800';
+                return 'bg-[#E6A2FF] text-[#490548]'; // Light purple bg, deep purple text
             case 'Cancelled':
                 return 'bg-red-100 text-red-800';
             default:
@@ -132,14 +132,14 @@ const Meetings: React.FC = () => {
     const getModeIcon = (mode: string) => {
         switch (mode) {
             case 'Online':
-                return <FaVideo className="text-blue-500" />;
+                return <FaVideo className="text-[#C71585]" />;
             case 'In-Person':
-                return <FaUsers className="text-green-500" />;
+                return <FaUsers className="text-[#F7C873]" />;
             case 'Hybrid':
                 return (
                     <div className="flex space-x-1">
-                        <FaVideo className="text-blue-500" />
-                        <FaUsers className="text-green-500" />
+                        <FaVideo className="text-[#C71585]" />
+                        <FaUsers className="text-[#F7C873]" />
                     </div>
                 );
             default:
@@ -151,7 +151,7 @@ const Meetings: React.FC = () => {
         <div className="container mx-auto px-4 py-8">
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-gray-800">Meeting Management</h1>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center" onClick={() => { setShowForm(true); setFormMode('add'); setFormMeeting({}); }}>
+                <button className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8] flex items-center" onClick={() => { setShowForm(true); setFormMode('add'); setFormMeeting({}); }}>
                     <FaPlus className="mr-2" />
                     Schedule Meeting
                 </button>
@@ -233,10 +233,10 @@ const Meetings: React.FC = () => {
                                 </td>
                                 <td className="px-2 py-4 whitespace-nowrap text-sm font-medium">
                                     <div className="flex space-x-3">
-                                        <button onClick={() => handleViewMeeting(meeting)} className="text-blue-600 hover:text-blue-900">
+                                        <button onClick={() => handleViewMeeting(meeting)} className="text-[#C71585] hover:text-[#8D38A8]">
                                             <FaEye className="w-5 h-5" />
                                         </button>
-                                        <button onClick={() => handleEditMeeting(meeting)} className="text-green-600 hover:text-green-900">
+                                        <button onClick={() => handleEditMeeting(meeting)} className="text-[#F7C873] hover:text-[#C71585]">
                                             <FaEdit className="w-5 h-5" />
                                         </button>
                                         <button onClick={() => handleDeleteMeeting(meeting.id)} className="text-red-600 hover:text-red-900">
@@ -319,7 +319,7 @@ const Meetings: React.FC = () => {
                             </div>
                             <div className="flex justify-end space-x-2 mt-4">
                                 <button type="button" onClick={() => setShowForm(false)} className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">{formMode === 'add' ? 'Schedule' : 'Update'}</button>
+                                <button type="submit" className="px-4 py-2 bg-[#C71585] text-white rounded hover:bg-[#8D38A8]">{formMode === 'add' ? 'Schedule' : 'Update'}</button>
                             </div>
                         </form>
                     </div>
@@ -356,7 +356,7 @@ const Meetings: React.FC = () => {
                                 {' '}{selectedMeeting.location}
                             </p>
                             {selectedMeeting.meetingLink && (
-                                <p className="text-blue-600">
+                                <p className="text-[#C71585]">
                                     <a href={selectedMeeting.meetingLink} target="_blank" rel="noopener noreferrer">
                                         Join Meeting
                                     </a>
@@ -373,7 +373,7 @@ const Meetings: React.FC = () => {
                             </div>
                         </div>
                         <div className="mt-4 flex justify-end">
-                            <button onClick={() => setShowModal(false)} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                            <button onClick={() => setShowModal(false)} className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8]">
                                 Close
                             </button>
                         </div>

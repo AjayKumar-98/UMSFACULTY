@@ -112,9 +112,9 @@ const Exams: React.FC = () => {
     const getStatusColor = (status: string) => {
         switch (status) {
             case 'Scheduled':
-                return 'bg-green-100 text-green-800';
+                return 'bg-[#F7C873] text-[#490548]'; // Gold bg, deep purple text
             case 'Completed':
-                return 'bg-blue-100 text-blue-800';
+                return 'bg-[#E6A2FF] text-[#490548]'; // Light purple bg, deep purple text
             case 'Cancelled':
                 return 'bg-red-100 text-red-800';
             default:
@@ -126,7 +126,7 @@ const Exams: React.FC = () => {
         <div className="container mx-auto px-4 py-8">
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-gray-800">Exam Management</h1>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center" onClick={() => { setShowForm(true); setFormMode('add'); setFormExam({}); }}>
+                <button className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8] flex items-center" onClick={() => { setShowForm(true); setFormMode('add'); setFormExam({}); }}>
                     <FaCalendarAlt className="mr-2" />
                     Schedule New Exam
                 </button>
@@ -205,10 +205,10 @@ const Exams: React.FC = () => {
                                 </td>
                                 <td className="px-2 py-4 whitespace-nowrap text-sm font-medium">
                                     <div className="flex space-x-3">
-                                        <button onClick={() => handleViewExam(exam)} className="text-blue-600 hover:text-blue-900">
+                                        <button onClick={() => handleViewExam(exam)} className="text-[#C71585] hover:text-[#8D38A8]">
                                             <FaEye className="w-5 h-5" />
                                         </button>
-                                        <button onClick={() => handleEditExam(exam)} className="text-green-600 hover:text-green-900">
+                                        <button onClick={() => handleEditExam(exam)} className="text-[#F7C873] hover:text-[#C71585]">
                                             <FaEdit className="w-5 h-5" />
                                         </button>
                                         <button onClick={() => handleDeleteExam(exam.id)} className="text-red-600 hover:text-red-900">
@@ -278,7 +278,7 @@ const Exams: React.FC = () => {
                             </div>
                             <div className="flex justify-end space-x-2 mt-4">
                                 <button type="button" onClick={() => setShowForm(false)} className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">{formMode === 'add' ? 'Schedule' : 'Update'}</button>
+                                <button type="submit" className="px-4 py-2 bg-[#C71585] text-white rounded hover:bg-[#8D38A8]">{formMode === 'add' ? 'Schedule' : 'Update'}</button>
                             </div>
                         </form>
                     </div>
@@ -306,7 +306,7 @@ const Exams: React.FC = () => {
                             <p><span className="font-medium">Status:</span> {selectedExam.status}</p>
                         </div>
                         <div className="mt-4 flex justify-end">
-                            <button onClick={() => setShowModal(false)} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                            <button onClick={() => setShowModal(false)} className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8]">
                                 Close
                             </button>
                         </div>

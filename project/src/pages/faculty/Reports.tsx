@@ -122,13 +122,13 @@ const Reports: React.FC = () => {
     const getTypeIcon = (type: string) => {
         switch (type) {
             case 'Academic':
-                return <FaBook className="text-blue-500" />;
+                return <FaBook className="text-[#C71585]" />;
             case 'Performance':
-                return <FaChartBar className="text-green-500" />;
+                return <FaChartBar className="text-[#F7C873]" />;
             case 'Attendance':
-                return <FaCalendarAlt className="text-purple-500" />;
+                return <FaCalendarAlt className="text-[#E6A2FF]" />;
             case 'Research':
-                return <FaFlask className="text-orange-500" />;
+                return <FaFlask className="text-[#8D38A8]" />;
             case 'Administrative':
                 return <FaChalkboardTeacher className="text-gray-500" />;
             default:
@@ -139,9 +139,9 @@ const Reports: React.FC = () => {
     const getStatusColor = (status: string) => {
         switch (status) {
             case 'Generated':
-                return 'bg-green-100 text-green-800';
+                return 'bg-[#F7C873] text-[#490548]'; // Gold bg, deep purple text
             case 'Processing':
-                return 'bg-yellow-100 text-yellow-800';
+                return 'bg-[#E6A2FF] text-[#490548]'; // Light purple bg, deep purple text
             case 'Failed':
                 return 'bg-red-100 text-red-800';
             default:
@@ -152,11 +152,11 @@ const Reports: React.FC = () => {
     const getFormatColor = (format: string) => {
         switch (format) {
             case 'PDF':
-                return 'bg-red-100 text-red-800';
+                return 'bg-[#C71585] text-white'; // Magenta bg, white text
             case 'Excel':
-                return 'bg-green-100 text-green-800';
+                return 'bg-[#F7C873] text-[#490548]'; // Gold bg, deep purple text
             case 'Word':
-                return 'bg-blue-100 text-blue-800';
+                return 'bg-[#E6A2FF] text-[#490548]'; // Light purple bg, deep purple text
             default:
                 return 'bg-gray-100 text-gray-800';
         }
@@ -167,7 +167,7 @@ const Reports: React.FC = () => {
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-gray-800">Reports Management</h1>
                 <div className="flex space-x-4">
-                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center" onClick={() => { setShowForm(true); setFormMode('add'); setFormReport({}); }}>
+                    <button className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8] flex items-center" onClick={() => { setShowForm(true); setFormMode('add'); setFormReport({}); }}>
                         <FaChartBar className="mr-2" />
                         Generate Report
                     </button>
@@ -177,28 +177,28 @@ const Reports: React.FC = () => {
             {/* Report Categories */}
             <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
                 <div className="bg-white p-4 rounded-lg shadow-md flex items-center space-x-3 cursor-pointer" onClick={() => handleCategoryClick('Academic')}>
-                    <FaBook className="text-blue-500 text-xl" />
+                    <FaBook className="text-[#C71585] text-xl" />
                     <div>
                         <div className="text-sm font-medium">Academic</div>
                         <div className="text-xs text-gray-500">5 reports</div>
                     </div>
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-md flex items-center space-x-3 cursor-pointer" onClick={() => handleCategoryClick('Performance')}>
-                    <FaChartBar className="text-green-500 text-xl" />
+                    <FaChartBar className="text-[#F7C873] text-xl" />
                     <div>
                         <div className="text-sm font-medium">Performance</div>
                         <div className="text-xs text-gray-500">3 reports</div>
                     </div>
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-md flex items-center space-x-3 cursor-pointer" onClick={() => handleCategoryClick('Attendance')}>
-                    <FaCalendarAlt className="text-purple-500 text-xl" />
+                    <FaCalendarAlt className="text-[#E6A2FF] text-xl" />
                     <div>
                         <div className="text-sm font-medium">Attendance</div>
                         <div className="text-xs text-gray-500">2 reports</div>
                     </div>
                 </div>
                 <div className="bg-white p-4 rounded-lg shadow-md flex items-center space-x-3 cursor-pointer" onClick={() => handleCategoryClick('Research')}>
-                    <FaUserGraduate className="text-orange-500 text-xl" />
+                    <FaUserGraduate className="text-[#8D38A8] text-xl" />
                     <div>
                         <div className="text-sm font-medium">Research</div>
                         <div className="text-xs text-gray-500">4 reports</div>
@@ -286,10 +286,10 @@ const Reports: React.FC = () => {
                                 </td>
                                 <td className="px-2 py-4 whitespace-nowrap text-sm font-medium">
                                     <div className="flex space-x-3">
-                                        <button onClick={() => handleViewReport(report)} className="text-blue-600 hover:text-blue-900">
+                                        <button onClick={() => handleViewReport(report)} className="text-[#C71585] hover:text-[#8D38A8]">
                                             <FaEye className="w-5 h-5" />
                                         </button>
-                                        <button onClick={() => handleEditReport(report)} className="text-green-600 hover:text-green-900">
+                                        <button onClick={() => handleEditReport(report)} className="text-[#F7C873] hover:text-[#C71585]">
                                             <FaChartBar className="w-5 h-5" />
                                         </button>
                                         <button onClick={() => handleDeleteReport(report.id)} className="text-red-600 hover:text-red-900">
@@ -357,7 +357,7 @@ const Reports: React.FC = () => {
                             </div>
                             <div className="flex justify-end space-x-2 mt-4">
                                 <button type="button" onClick={() => setShowForm(false)} className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">{formMode === 'add' ? 'Generate' : 'Update'}</button>
+                                <button type="submit" className="px-4 py-2 bg-[#C71585] text-white rounded hover:bg-[#8D38A8]">{formMode === 'add' ? 'Generate' : 'Update'}</button>
                             </div>
                         </form>
                     </div>
@@ -385,7 +385,7 @@ const Reports: React.FC = () => {
                         </div>
                         <div className="mt-4 flex justify-end space-x-3">
                             <button
-                                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center"
+                                className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8] flex items-center"
                                 onClick={() => {
                                     let mimeType = 'text/plain';
                                     let ext = 'txt';
@@ -414,7 +414,7 @@ const Reports: React.FC = () => {
                                 <FaDownload className="mr-2" />
                                 Download
                             </button>
-                            <button onClick={() => setShowModal(false)} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                            <button onClick={() => setShowModal(false)} className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8]">
                                 Close
                             </button>
                         </div>

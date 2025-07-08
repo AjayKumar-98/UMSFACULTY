@@ -30,10 +30,19 @@ const Settings: React.FC = () => {
     const [profile, setProfile] = useState({
         name: 'Dr. Anil Kumar',
         email: 'anil.kumar@university.edu.in',
-        department: 'Computer Science',
-        office: 'Room 301, Building A',
         contact: '+91 98765 43210',
-        photo: 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'
+        gender: 'Male',
+        dob: '1975-08-15',
+        group: 'A',
+        fatherName: 'Shri Ram Kumar',
+        nationality: 'Indian',
+        religion: 'Hindu',
+        caste: 'General',
+        motherTongue: 'Telugu',
+        otherMobile: '+91 98765 43211',
+        aadhar: '1234-5678-9012',
+        pan: 'ABCDE1234F',
+        photo: 'https://randomuser.me/api/portraits/men/32.jpg'
     });
 
     const handleNotificationChange = (index: number, channel: 'email' | 'push' | 'sms') => {
@@ -47,6 +56,7 @@ const Settings: React.FC = () => {
 
     const handleSave = () => {
         localStorage.setItem('facultyProfile', JSON.stringify(profile));
+        window.dispatchEvent(new Event('storage'));
         setSaveMessage('Settings saved successfully!');
         setTimeout(() => setSaveMessage(''), 2000);
     };
@@ -58,7 +68,7 @@ const Settings: React.FC = () => {
     };
 
     const tabs = [
-        { id: 'profile', label: 'Profile Settings', icon: <FaUser /> },
+        { id: 'profile', label: 'Profile', icon: <FaUser /> },
         { id: 'notifications', label: 'Notifications', icon: <FaBell /> },
         { id: 'security', label: 'Security', icon: <FaLock /> },
         { id: 'privacy', label: 'Privacy', icon: <MdPrivacyTip /> }
@@ -84,6 +94,10 @@ const Settings: React.FC = () => {
         if (stored) setProfile(JSON.parse(stored));
     }, []);
 
+    useEffect(() => {
+        localStorage.setItem('facultyProfile', JSON.stringify(profile));
+    }, [profile]);
+
     return (
         <div className="container mx-auto px-4 py-8 bg-white dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100">
             <h1 className="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">Settings</h1>
@@ -97,7 +111,7 @@ const Settings: React.FC = () => {
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`w-full flex items-center px-4 py-3 text-left ${activeTab === tab.id
-                                    ? 'bg-blue-50 text-blue-600'
+                                    ? 'bg-[#E6A2FF] text-[#490548]'
                                     : 'text-gray-700 hover:bg-gray-50'
                                     }`}
                             >
@@ -111,82 +125,6 @@ const Settings: React.FC = () => {
                 {/* Settings Content */}
                 <div className="flex-1">
                     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-                        {/* Profile Settings */}
-                        {activeTab === 'profile' && (
-                            <div>
-                                <h2 className="text-xl font-semibold mb-4">Profile Settings</h2>
-                                <div className="space-y-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                                            Display Name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            value={profile.name}
-                                            onChange={e => setProfile(p => ({ ...p, name: e.target.value }))}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                                            Email Address
-                                        </label>
-                                        <input
-                                            type="email"
-                                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            value={profile.email}
-                                            onChange={e => setProfile(p => ({ ...p, email: e.target.value }))}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                                            Department
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            value={profile.department}
-                                            onChange={e => setProfile(p => ({ ...p, department: e.target.value }))}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                                            Office Location
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            value={profile.office}
-                                            onChange={e => setProfile(p => ({ ...p, office: e.target.value }))}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                                            Contact Number
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            value={profile.contact}
-                                            onChange={e => setProfile(p => ({ ...p, contact: e.target.value }))}
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                                            Profile Photo URL
-                                        </label>
-                                        <input
-                                            type="text"
-                                            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                            value={profile.photo}
-                                            onChange={e => setProfile(p => ({ ...p, photo: e.target.value }))}
-                                        />
-                                        <img src={profile.photo} alt="Profile Preview" className="w-20 h-20 rounded-full mt-2 border" />
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-
                         {/* Notification Settings */}
                         {activeTab === 'notifications' && (
                             <div>
@@ -218,7 +156,7 @@ const Settings: React.FC = () => {
                                                                 type="checkbox"
                                                                 checked={setting.email}
                                                                 onChange={() => handleNotificationChange(index, 'email')}
-                                                                className="form-checkbox h-5 w-5 text-blue-600"
+                                                                className="form-checkbox h-5 w-5 text-[#C71585]"
                                                             />
                                                         </label>
                                                     </td>
@@ -228,7 +166,7 @@ const Settings: React.FC = () => {
                                                                 type="checkbox"
                                                                 checked={setting.sms}
                                                                 onChange={() => handleNotificationChange(index, 'sms')}
-                                                                className="form-checkbox h-5 w-5 text-blue-600"
+                                                                className="form-checkbox h-5 w-5 text-[#C71585]"
                                                             />
                                                         </label>
                                                     </td>
@@ -254,7 +192,7 @@ const Settings: React.FC = () => {
                                                 </label>
                                                 <input
                                                     type="password"
-                                                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C71585]"
                                                     value={passwords.current}
                                                     onChange={e => setPasswords(p => ({ ...p, current: e.target.value }))}
                                                 />
@@ -265,7 +203,7 @@ const Settings: React.FC = () => {
                                                 </label>
                                                 <input
                                                     type="password"
-                                                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C71585]"
                                                     value={passwords.new}
                                                     onChange={e => setPasswords(p => ({ ...p, new: e.target.value }))}
                                                 />
@@ -276,7 +214,7 @@ const Settings: React.FC = () => {
                                                 </label>
                                                 <input
                                                     type="password"
-                                                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                    className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#C71585]"
                                                     value={passwords.confirm}
                                                     onChange={e => setPasswords(p => ({ ...p, confirm: e.target.value }))}
                                                 />
@@ -293,7 +231,7 @@ const Settings: React.FC = () => {
                                                 </p>
                                             </div>
                                             <button
-                                                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                                                className="px-4 py-2 bg-[#C71585] text-white rounded-lg hover:bg-[#8D38A8]"
                                                 onClick={handleEnable2FA}
                                                 disabled={twoFactorEnabled}
                                             >
@@ -339,7 +277,7 @@ const Settings: React.FC = () => {
                                             <label className="flex items-center">
                                                 <input
                                                     type="checkbox"
-                                                    className="form-checkbox h-5 w-5 text-blue-600"
+                                                    className="form-checkbox h-5 w-5 text-[#C71585]"
                                                     defaultChecked
                                                 />
                                                 <span className="ml-2 text-sm text-gray-700">
@@ -349,7 +287,7 @@ const Settings: React.FC = () => {
                                             <label className="flex items-center">
                                                 <input
                                                     type="checkbox"
-                                                    className="form-checkbox h-5 w-5 text-blue-600"
+                                                    className="form-checkbox h-5 w-5 text-[#C71585]"
                                                     defaultChecked
                                                 />
                                                 <span className="ml-2 text-sm text-gray-700">
@@ -359,7 +297,7 @@ const Settings: React.FC = () => {
                                             <label className="flex items-center">
                                                 <input
                                                     type="checkbox"
-                                                    className="form-checkbox h-5 w-5 text-blue-600"
+                                                    className="form-checkbox h-5 w-5 text-[#C71585]"
                                                 />
                                                 <span className="ml-2 text-sm text-gray-700">
                                                     Show my email address publicly
@@ -373,7 +311,7 @@ const Settings: React.FC = () => {
                                             <label className="flex items-center">
                                                 <input
                                                     type="checkbox"
-                                                    className="form-checkbox h-5 w-5 text-blue-600"
+                                                    className="form-checkbox h-5 w-5 text-[#C71585]"
                                                     defaultChecked
                                                 />
                                                 <span className="ml-2 text-sm text-gray-700">
@@ -383,7 +321,7 @@ const Settings: React.FC = () => {
                                             <label className="flex items-center">
                                                 <input
                                                     type="checkbox"
-                                                    className="form-checkbox h-5 w-5 text-blue-600"
+                                                    className="form-checkbox h-5 w-5 text-[#C71585]"
                                                     defaultChecked
                                                 />
                                                 <span className="ml-2 text-sm text-gray-700">
@@ -398,7 +336,7 @@ const Settings: React.FC = () => {
                                             <label className="flex items-center">
                                                 <input
                                                     type="checkbox"
-                                                    className="form-checkbox h-5 w-5 text-blue-600"
+                                                    className="form-checkbox h-5 w-5 text-[#C71585]"
                                                     defaultChecked
                                                 />
                                                 <span className="ml-2 text-sm text-gray-700">
@@ -408,7 +346,7 @@ const Settings: React.FC = () => {
                                             <label className="flex items-center">
                                                 <input
                                                     type="checkbox"
-                                                    className="form-checkbox h-5 w-5 text-blue-600"
+                                                    className="form-checkbox h-5 w-5 text-[#C71585]"
                                                     defaultChecked
                                                 />
                                                 <span className="ml-2 text-sm text-gray-700">
@@ -421,12 +359,84 @@ const Settings: React.FC = () => {
                             </div>
                         )}
 
+                        {/* Profile Settings */}
+                        {activeTab === 'profile' && (
+                            <div className="flex flex-col items-center justify-center">
+                                <div className="w-full max-w-xl bg-white rounded-xl shadow-lg px-8 py-6 flex flex-col items-center">
+                                    <div className="relative mb-4">
+                                        <img
+                                            src={profile.photo}
+                                            alt="Profile"
+                                            className="w-32 h-32 rounded-full object-cover border-4 border-blue-200 bg-gray-100"
+                                        />
+                                        <label htmlFor="profile-pic-upload" className="absolute bottom-2 right-2 bg-[#C71585] text-white rounded-full p-2 cursor-pointer shadow-lg hover:bg-[#8D38A8]" title="Edit Profile Picture">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487a2.25 2.25 0 1 1 3.182 3.182l-9.193 9.193a4.5 4.5 0 0 1-1.897 1.13l-3.06.918a.75.75 0 0 1-.927-.927l.918-3.06a4.5 4.5 0 0 1 1.13-1.897l9.193-9.193z" />
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 6.75l-1.5-1.5" />
+                                            </svg>
+                                            <input
+                                                id="profile-pic-upload"
+                                                type="file"
+                                                accept="image/*"
+                                                className="hidden"
+                                                onChange={e => {
+                                                    const file = e.target.files && e.target.files[0];
+                                                    if (file) {
+                                                        const reader = new FileReader();
+                                                        reader.onload = ev => {
+                                                            setProfile(prev => {
+                                                                const updated = { ...prev, photo: ev.target?.result as string };
+                                                                localStorage.setItem('facultyProfile', JSON.stringify(updated));
+                                                                return updated;
+                                                            });
+                                                        };
+                                                        reader.readAsDataURL(file);
+                                                    }
+                                                }}
+                                            />
+                                        </label>
+                                    </div>
+                                    <h2 className="text-2xl font-bold text-gray-800 mb-6">{profile.name}</h2>
+                                    <div className="w-full">
+                                        <div className="grid grid-cols-2 gap-y-3 gap-x-8">
+                                            <div className="text-gray-600">Email</div>
+                                            <div className="font-semibold text-gray-900">{profile.email}</div>
+                                            <div className="text-gray-600">Phone Number</div>
+                                            <div className="font-semibold text-gray-900">{profile.contact}</div>
+                                            <div className="text-gray-600">Gender</div>
+                                            <div>{profile.gender}</div>
+                                            <div className="text-gray-600">Date of Birth</div>
+                                            <div>{profile.dob}</div>
+                                            <div className="text-gray-600">Blood Group</div>
+                                            <div>{profile.group}</div>
+                                            <div className="text-gray-600">Father's Name</div>
+                                            <div>{profile.fatherName}</div>
+                                            <div className="text-gray-600">Nationality</div>
+                                            <div>{profile.nationality}</div>
+                                            <div className="text-gray-600">Religion</div>
+                                            <div>{profile.religion}</div>
+                                            <div className="text-gray-600">Caste</div>
+                                            <div>{profile.caste}</div>
+                                            <div className="text-gray-600">Mother Tongue</div>
+                                            <div>{profile.motherTongue}</div>
+                                            <div className="text-gray-600">Other Mobile No</div>
+                                            <div>{profile.otherMobile}</div>
+                                            <div className="text-gray-600">Aadhar No</div>
+                                            <div>{profile.aadhar}</div>
+                                            <div className="text-gray-600">PAN Card No</div>
+                                            <div>{profile.pan}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         {/* Save Button */}
                         <div className="mt-6 flex justify-end">
-                            <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" onClick={handleSave}>
+                            <button className="px-4 py-2 bg-[#C71585] text-white rounded-lg hover:bg-[#8D38A8]" onClick={handleSave}>
                                 Save Changes
                             </button>
-                            {saveMessage && <span className="ml-4 text-green-600 font-medium">{saveMessage}</span>}
+                            {saveMessage && <span className="ml-4 text-[#C71585] font-medium">{saveMessage}</span>}
                         </div>
                     </div>
                 </div>

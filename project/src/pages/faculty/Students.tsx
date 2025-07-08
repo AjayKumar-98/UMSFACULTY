@@ -298,7 +298,7 @@ const Students: React.FC = () => {
                 <div className="flex space-x-2">
                     <button
                         onClick={() => setShowAttendanceModal(true)}
-                        className="flex items-center px-3 py-1.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50"
+                        className="flex items-center px-3 py-1.5 text-sm bg-[#C71585] text-white rounded-md hover:bg-[#8D38A8] disabled:opacity-50"
                         disabled={!selectedCourse}
                     >
                         <FaCalendarCheck className="mr-2" size={14} />
@@ -306,7 +306,7 @@ const Students: React.FC = () => {
                     </button>
                     <button
                         onClick={handleDownloadReport}
-                        className="flex items-center px-3 py-1.5 text-sm bg-green-600 text-white rounded-md hover:bg-green-700 disabled:opacity-50"
+                        className="flex items-center px-3 py-1.5 text-sm bg-[#C71585] text-white rounded-md hover:bg-[#8D38A8] disabled:opacity-50"
                         disabled={downloadingReport}
                     >
                         <FaDownload className="mr-2" size={14} />
@@ -316,19 +316,19 @@ const Students: React.FC = () => {
             </div>
 
             {selectedCourseInfo && (
-                <div className="mb-4 bg-blue-50 p-3 rounded-md">
-                    <h2 className="text-lg font-semibold text-blue-800 mb-2">Course Information</h2>
+                <div className="mb-4 bg-[#E6A2FF] p-3 rounded-md">
+                    <h2 className="text-lg font-semibold text-[#C71585] mb-2">Course Information</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div>
-                            <span className="text-blue-600 font-medium">Schedule:</span>
+                            <span className="text-[#C71585] font-medium">Schedule:</span>
                             <span className="ml-2">{selectedCourseInfo.schedule}</span>
                         </div>
                         <div>
-                            <span className="text-blue-600 font-medium">Total Classes:</span>
+                            <span className="text-[#C71585] font-medium">Total Classes:</span>
                             <span className="ml-2">{selectedCourseInfo.totalClasses}</span>
                         </div>
                         <div>
-                            <span className="text-blue-600 font-medium">Students:</span>
+                            <span className="text-[#C71585] font-medium">Students:</span>
                             <span className="ml-2">{filteredStudents.length}</span>
                         </div>
                     </div>
@@ -380,9 +380,9 @@ const Students: React.FC = () => {
                                     </td>
                                     <td className="px-2 py-4 whitespace-nowrap text-sm">
                                         <span className={`px-2 py-0.5 text-xs rounded-full ${student.attendance >= 85
-                                            ? 'bg-green-100 text-green-800'
+                                            ? 'bg-[#E6A2FF] text-[#490548]'
                                             : student.attendance >= 75
-                                                ? 'bg-yellow-100 text-yellow-800'
+                                                ? 'bg-[#F7C873] text-[#490548]'
                                                 : 'bg-red-100 text-red-800'
                                             }`}>
                                             {student.attendance}%
@@ -398,7 +398,7 @@ const Students: React.FC = () => {
                                                     setSelectedStudent(student);
                                                     setShowStudentModal(true);
                                                 }}
-                                                className="text-blue-600 hover:text-blue-900"
+                                                className="text-[#C71585] hover:text-[#8D38A8]"
                                                 title="View Details"
                                             >
                                                 <FaEye size={14} />
@@ -408,7 +408,7 @@ const Students: React.FC = () => {
                                                     setSelectedStudent(student);
                                                     setShowAttendanceModal(true);
                                                 }}
-                                                className="text-indigo-600 hover:text-indigo-900"
+                                                className="text-[#F7C873] hover:text-[#C71585]"
                                                 title="Mark Attendance"
                                             >
                                                 <FaUserEdit size={14} />
@@ -466,7 +466,7 @@ const Students: React.FC = () => {
                                                     </td>
                                                     <td className="px-3 py-2">
                                                         <span className={`px-2 py-0.5 text-xs rounded-full ${record.status
-                                                            ? 'bg-green-100 text-green-800'
+                                                            ? 'bg-[#E6A2FF] text-[#490548]'
                                                             : 'bg-red-100 text-red-800'
                                                             }`}>
                                                             {record.status ? 'Present' : 'Absent'}
@@ -482,7 +482,7 @@ const Students: React.FC = () => {
                         <div className="mt-4">
                             <button
                                 onClick={() => setShowStudentModal(false)}
-                                className="w-full px-3 py-1.5 text-sm bg-blue-600 text-white rounded-md hover:bg-blue-700"
+                                className="w-full px-3 py-1.5 text-sm bg-[#C71585] text-white rounded-md hover:bg-[#8D38A8]"
                             >
                                 Close
                             </button>
@@ -536,11 +536,11 @@ const Students: React.FC = () => {
                                                     <td className="px-2 py-4 whitespace-nowrap text-sm">{student.rollNo}</td>
                                                     <td className="px-2 py-4 whitespace-nowrap text-sm">{student.name}</td>
                                                     <td className="px-2 py-4 whitespace-nowrap text-sm">
-                                                        <span className={`px-2 py-0.5 text-xs rounded-full ${student.isPresent ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>{status}</span>
+                                                        <span className={`px-2 py-0.5 text-xs rounded-full ${student.isPresent ? 'bg-[#E6A2FF] text-[#490548]' : 'bg-red-100 text-red-800'}`}>{status}</span>
                                                     </td>
                                                     <td className="px-2 py-4 whitespace-nowrap text-sm">
                                                         <button
-                                                            className="text-green-600 hover:text-green-800 mr-2"
+                                                            className="text-[#C71585] hover:text-[#8D38A8] mr-2"
                                                             title="Mark Present"
                                                             onClick={() => handleStatusChange(student.id, true)}
                                                         >
@@ -570,7 +570,7 @@ const Students: React.FC = () => {
                                 </button>
                                 <button
                                     onClick={handleBulkAttendanceSubmit}
-                                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                                    className="px-4 py-2 bg-[#C71585] text-white rounded hover:bg-[#8D38A8]"
                                     disabled={attendanceSubmitting}
                                 >
                                     {attendanceSubmitting ? 'Submitting...' : 'Submit Attendance'}

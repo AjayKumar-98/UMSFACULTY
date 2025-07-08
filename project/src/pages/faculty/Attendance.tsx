@@ -24,6 +24,7 @@ const Attendance: React.FC = () => {
     );
     const [selectedCourse, setSelectedCourse] = useState<string>('CS101');
     const [isMarkingAttendance, setIsMarkingAttendance] = useState<boolean>(false);
+    const [historyType, setHistoryType] = useState<'student' | 'faculty'>('student');
 
     const courses: Course[] = [
         { id: '1', code: 'CS101', name: 'Introduction to Computer Science' },
@@ -77,6 +78,12 @@ const Attendance: React.FC = () => {
     const enrolledStudents = students.filter(student =>
         student.enrolledCourses.includes(selectedCourse)
     );
+
+    const facultyHistory = [
+        { date: '2025-06-20', total: 45, attended: 44, percentage: 97.8 },
+        { date: '2025-06-19', total: 44, attended: 43, percentage: 97.7 },
+        { date: '2025-06-18', total: 43, attended: 42, percentage: 97.6 },
+    ];
 
     const getAttendanceColor = (percentage: number) => {
         if (percentage >= 75) return 'text-green-600';
@@ -273,8 +280,75 @@ const Attendance: React.FC = () => {
                     </table>
                 </div>
             </div>
+
+            <div className="bg-white rounded-lg shadow-sm mt-10 p-6">
+                <div className="flex items-center gap-4 mb-4">
+                    <span className="font-bold text-lg">Attendance History</span>
+                    <select
+                        className="border rounded px-4 py-2"
+                        value={historyType}
+                        onChange={e => setHistoryType(e.target.value as 'student' | 'faculty')}
+                    >
+                        <option value="student">Student History</option>
+                        <option value="faculty">Faculty History</option>
+                    </select>
+                </div>
+                {historyType === 'student' ? (
+                    <div>
+                        <h3 className="font-semibold mb-2">Student Attendance History</h3>
+                        <table className="min-w-full text-left mb-4">
+                            <thead>
+                                <tr className="bg-gray-100">
+                                    <th className="px-6 py-3">STUDENT</th>
+                                    <th className="px-6 py-3">ROLL NO</th>
+                                    <th className="px-6 py-3">TOTAL CLASSES</th>
+                                    <th className="px-6 py-3">ATTENDED</th>
+                                    <th className="px-6 py-3">PERCENTAGE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {students.map(s => (
+                                    <tr key={s.id} className="border-b">
+                                        <td className="px-6 py-3 font-semibold">{s.name}</td>
+                                        <td className="px-6 py-3">{s.rollNo}</td>
+                                        <td className="px-6 py-3">{s.totalClasses}</td>
+                                        <td className="px-6 py-3">{s.attended}</td>
+                                        <td className="px-6 py-3 font-semibold text-[#C71585]">{s.percentage.toFixed(1)}%</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <div className="text-gray-600 text-sm">This table shows the overall attendance record for each student across all courses. Use this data to identify students with low attendance and take necessary actions.</div>
+                    </div>
+                ) : (
+                    <div>
+                        <h3 className="font-semibold mb-2">Faculty Attendance History</h3>
+                        <table className="min-w-full text-left mb-4">
+                            <thead>
+                                <tr className="bg-gray-100">
+                                    <th className="px-6 py-3">DATE</th>
+                                    <th className="px-6 py-3">TOTAL CLASSES</th>
+                                    <th className="px-6 py-3">ATTENDED</th>
+                                    <th className="px-6 py-3">PERCENTAGE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {facultyHistory.map((f, idx) => (
+                                    <tr key={idx} className="border-b">
+                                        <td className="px-6 py-3">{f.date}</td>
+                                        <td className="px-6 py-3">{f.total}</td>
+                                        <td className="px-6 py-3">{f.attended}</td>
+                                        <td className="px-6 py-3 font-semibold text-[#8D38A8]">{f.percentage}%</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <div className="text-gray-600 text-sm">This table shows the faculty's attendance record for recent days. Consistent attendance is important for maintaining academic standards and setting a positive example for students.</div>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };
 
-export default Attendance; 
+export default Attendance;

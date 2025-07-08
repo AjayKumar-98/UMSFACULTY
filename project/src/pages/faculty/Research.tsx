@@ -112,14 +112,14 @@ const Research: React.FC = () => {
         switch (status) {
             case 'Active':
             case 'Published':
-                return 'bg-green-100 text-green-800';
+                return 'bg-[#C71585] text-white'; // Magenta bg, white text
             case 'Completed':
-                return 'bg-blue-100 text-blue-800';
+                return 'bg-[#F7C873] text-[#490548]'; // Gold bg, deep purple text
             case 'On Hold':
             case 'Under Review':
-                return 'bg-yellow-100 text-yellow-800';
+                return 'bg-[#E6A2FF] text-[#490548]'; // Light purple bg, deep purple text
             case 'In Progress':
-                return 'bg-purple-100 text-purple-800';
+                return 'bg-[#8D38A8] text-white'; // Deep purple bg, white text
             default:
                 return 'bg-gray-100 text-gray-800';
         }
@@ -134,7 +134,7 @@ const Research: React.FC = () => {
         <div className="container mx-auto px-4 py-8">
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-2xl font-bold text-gray-800">Research Management</h1>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center" onClick={() => activeTab === 'projects' ? setShowProjectForm(true) : setShowPublicationForm(true)}>
+                <button className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8] flex items-center" onClick={() => activeTab === 'projects' ? setShowProjectForm(true) : setShowPublicationForm(true)}>
                     <FaPlus className="mr-2" />
                     {activeTab === 'projects' ? 'New Project' : 'New Publication'}
                 </button>
@@ -144,7 +144,7 @@ const Research: React.FC = () => {
             <div className="flex space-x-4 mb-6">
                 <button
                     className={`px-4 py-2 rounded-lg flex items-center ${activeTab === 'projects'
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-[#C71585] text-white'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                     onClick={() => setActiveTab('projects')}
@@ -154,7 +154,7 @@ const Research: React.FC = () => {
                 </button>
                 <button
                     className={`px-4 py-2 rounded-lg flex items-center ${activeTab === 'publications'
-                        ? 'bg-blue-600 text-white'
+                        ? 'bg-[#C71585] text-white'
                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                         }`}
                     onClick={() => setActiveTab('publications')}
@@ -213,10 +213,10 @@ const Research: React.FC = () => {
                                         </td>
                                         <td className="px-2 py-4 whitespace-nowrap text-sm font-medium">
                                             <div className="flex space-x-3">
-                                                <button onClick={() => handleView(project)} className="text-blue-600 hover:text-blue-900">
+                                                <button onClick={() => handleView(project)} className="text-[#C71585] hover:text-[#8D38A8]">
                                                     <FaEye className="w-5 h-5" />
                                                 </button>
-                                                <button onClick={() => { setEditProject(project); setProjectForm({ ...project }); setShowProjectForm(true); }} className="text-green-600 hover:text-green-900">
+                                                <button onClick={() => { setEditProject(project); setProjectForm({ ...project }); setShowProjectForm(true); }} className="text-[#F7C873] hover:text-[#C71585]">
                                                     <FaEdit className="w-5 h-5" />
                                                 </button>
                                                 <button onClick={() => setDeleteTarget({ type: 'project', id: project.id })} className="text-red-600 hover:text-red-900">
@@ -269,10 +269,10 @@ const Research: React.FC = () => {
                                         </td>
                                         <td className="px-2 py-4 whitespace-nowrap text-sm font-medium">
                                             <div className="flex space-x-3">
-                                                <button onClick={() => handleView(publication)} className="text-blue-600 hover:text-blue-900">
+                                                <button onClick={() => handleView(publication)} className="text-[#C71585] hover:text-[#8D38A8]">
                                                     <FaEye className="w-5 h-5" />
                                                 </button>
-                                                <button onClick={() => { setEditPublication(publication); setPublicationForm({ ...publication }); setShowPublicationForm(true); }} className="text-green-600 hover:text-green-900">
+                                                <button onClick={() => { setEditPublication(publication); setPublicationForm({ ...publication }); setShowPublicationForm(true); }} className="text-[#F7C873] hover:text-[#C71585]">
                                                     <FaEdit className="w-5 h-5" />
                                                 </button>
                                                 <button onClick={() => setDeleteTarget({ type: 'publication', id: publication.id })} className="text-red-600 hover:text-red-900">
@@ -330,7 +330,7 @@ const Research: React.FC = () => {
                         </div>
                         <div className="mt-4 flex justify-end space-x-3">
                             <button
-                                className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center"
+                                className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8] flex items-center"
                                 onClick={() => {
                                     let content = '';
                                     let filename = '';
@@ -356,7 +356,7 @@ const Research: React.FC = () => {
                                 <FaDownload className="mr-2" />
                                 Download Report
                             </button>
-                            <button onClick={() => setShowModal(false)} className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                            <button onClick={() => setShowModal(false)} className="bg-[#C71585] text-white px-4 py-2 rounded-lg hover:bg-[#8D38A8]">
                                 Close
                             </button>
                         </div>
@@ -390,7 +390,7 @@ const Research: React.FC = () => {
                             <input className="w-full border rounded px-2 py-1" name="collaborators" value={projectForm.collaborators.join(', ')} onChange={e => setProjectForm(f => ({ ...f, collaborators: e.target.value.split(',').map(s => s.trim()).filter(Boolean) }))} placeholder="Collaborators (comma separated)" />
                             <div className="flex justify-end space-x-2 mt-4">
                                 <button type="button" onClick={() => { setShowProjectForm(false); setEditProject(null); }} className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">{editProject ? 'Save Changes' : 'Add Project'}</button>
+                                <button type="submit" className="px-4 py-2 bg-[#C71585] text-white rounded hover:bg-[#8D38A8]">{editProject ? 'Save Changes' : 'Add Project'}</button>
                             </div>
                         </form>
                     </div>
@@ -425,7 +425,7 @@ const Research: React.FC = () => {
                             </select>
                             <div className="flex justify-end space-x-2 mt-4">
                                 <button type="button" onClick={() => { setShowPublicationForm(false); setEditPublication(null); }} className="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">Cancel</button>
-                                <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">{editPublication ? 'Save Changes' : 'Add Publication'}</button>
+                                <button type="submit" className="px-4 py-2 bg-[#C71585] text-white rounded hover:bg-[#8D38A8]">{editPublication ? 'Save Changes' : 'Add Publication'}</button>
                             </div>
                         </form>
                     </div>
